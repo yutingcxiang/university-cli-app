@@ -11,10 +11,10 @@ class UniversityCliApp::CLI
     unless input == "5"
       puts "Welcome to the top 50 Colleges & Universities in America for 2018."
       puts "Please select an option:"
-      puts "1. View college list"
+      puts "1. View entire college list"
       puts "2. Select University by name"
       puts "3. Select University by rank"
-      puts "4. Select university by location (state)"
+      puts "4. Select universities by location (state)"
       puts "5. Exit"
     answer = gets.strip
     end
@@ -27,8 +27,11 @@ class UniversityCliApp::CLI
       list_by_rank
     elsif answer == "4"
       list_location
+    elsif answer == "5"
+      close_app
     else
       "Please try again."
+      menu
     end
   end
 
@@ -38,16 +41,7 @@ class UniversityCliApp::CLI
         puts "#{index + 1}. university.name"
       end
     end
-
-    def list_by_name
-      puts "Please enter the name (ex: Princeton):"
-      # answer = gets.strip
-      # @universities = UniversityCliApp::Top50.top50
-      # if @universities.name.find?(answer)
-      #   puts university
-      end
-    end
-
+    
     def list_by_rank
       puts "Please enter a number from 1-50:"
       answer = gets.strip
@@ -55,22 +49,11 @@ class UniversityCliApp::CLI
       @universities.each_with_index do |university, index|
         if index + 1 == answer
         puts "#{index + 1}. university.name"
-    end
-
-    def list_by_location
-      puts "Please enter the state (ex: NJ):"
-      answer = gets.strip
-      # @universities = UniversityCliApp::Top50.top50
-      # if @universities.location.find?(answer)
-      #   puts university
+        puts
     end
 
     def close_app
       puts "Thank you for checking out the rankings. Good luck with your selection!"
+      exit
     end
-# -> "Would you like additional details? (Y/N)"
-# -> Additional info + website link
-# -> "Would you like to see another college? (Y/N)"
-# -> Back to menu or quit
-
 end
