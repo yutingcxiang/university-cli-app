@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "This app displays the top 50 colleges and universities in America for 2018."
   spec.description   = "This app will display a list of the top ranked national universities in the U.S. in 2018. When the app is started, the user is given a navigational menu and prompted to view the entire university list, to filter universities based on different criteria such as ranking number, acceptance rate, and location, to get more information on a specific university by providing the name, or to quit the app. If the user chooses to view the entire university list, a scraped list of university names from https://www.thebestcolleges.org/rankings/top-50/ will be displayed. The user can then choose to retrieve details from a specific university by providing the rank number or to return to the navigational menu. If the user chooses to get more information on a specific university, additional details will be provided as well as a link to the university site. The app will be composed of a University class for each individual university, a UniversityScraper for retrieving the information from the site, and a UniversityCLI interface."
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/yutingcxiang?tab=repositories"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
+  spec.add_dependency "nokogiri"
 end

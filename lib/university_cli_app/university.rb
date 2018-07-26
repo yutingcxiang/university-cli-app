@@ -5,7 +5,7 @@ class University::Top50
     self.university_list
   end
 
-  def university_list(https://www.thebestcolleges.org/rankings/top-50/)
+  def university_list("https://www.thebestcolleges.org/rankings/top-50/")
     universities = Nokogiri::HTML(open(url))
     university_list = []
 
@@ -14,7 +14,7 @@ class University::Top50
     # 3. Swarthmore College
   end
 
-  def university_page(https://www.thebestcolleges.org/rankings/top-50/)
+  def university_page("https://www.thebestcolleges.org/rankings/top-50/")
     # university = Nokogiri::HTML(open(url))
     # university = {}
     # Name: Princeton => univerity.css("rankings-list h4.rank_title_link").text
