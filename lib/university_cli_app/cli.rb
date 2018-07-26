@@ -7,47 +7,42 @@ class UniversityCliApp::CLI
 
   def menu
     input = nil
-    unless input == "5"
+    unless input == "3"
       puts "Welcome to the top 50 Colleges & Universities in America for 2018."
       puts "Please select an option:"
       puts "1. View entire college list"
-      puts "2. Select University by name"
-      puts "3. Select University by rank"
-      puts "4. Select universities by location (state)"
-      puts "5. Exit"
+      puts "2. Select University by rank"
+      puts "3. Exit"
     answer = gets.strip
-    end
 
     if answer == "1"
       list_colleges
     elsif answer == "2"
-      list_by_name
-    elsif answer ==  "3"
       list_by_rank
-    elsif answer == "4"
-      list_location
-    elsif answer == "5"
+    elsif answer ==  "3"
       close_app
     else
-      "Please try again."
+      puts "Please try again."
       menu
+    end
     end
   end
 
     def list_colleges
-      universities = UniversityCliApp::University.school_list
-      universities.each_with_index do |university, index|
-        puts "#{index + 1}. university.name"
-      end
+      UniversityCliApp::University.school_list
+      # universities = UniversityCliApp::University.school_list
+      # universities.each_with_index do |school, index|
+      #   puts "#{index + 1}. school.name"
+      # end
     end
 
     def list_by_rank
       puts "Please enter a number from 1-50:"
-      answer = gets.strip
+      answer = gets.strip.to_i
       universities = UniversityCliApp::University.school_list
-      universities.each_with_index do |university, index|
+      universities.each_with_index do |school, index|
         if index + 1 == answer
-        puts "#{index + 1}. university.name"
+        puts "#{index + 1}. school.name"
         end
       end
     end
