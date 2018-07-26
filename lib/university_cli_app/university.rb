@@ -1,4 +1,4 @@
-class UniversityCliApp::Top50
+class UniversityCliApp::University
   attr_accessor :name, :rank, :location, :url, :description
   @@all
 
@@ -6,19 +6,23 @@ class UniversityCliApp::Top50
     @all
   end
 
-  def top50
-    self.scrape_university_list
+  def self.school_list
+    scrape_university_list
   end
 
-  def scrape_university_list
-    university = Nokogiri::HTML(open("https://www.thebestcolleges.org/rankings/top-50/"))
-    university.css("rank-tbody").each do |university|
-    # Name: Princeton => univerity.css("rankings-list rank-td title js-trigger h4.rank_title_link").text
-    # Rank: 1 => university.css(rank-td rank js-trigger")
-    # Location: NJ => univerity.css("rankings-list h4.rank_title_link").text
-    # Description:
-    # Url:
+  def self.scrape_university_list
+    universities = Nokogiri::HTML(open("https://www.thebestcolleges.org/rankings/top-50/"))
+    school_list = []
+    universities.css("rank-tbody").each do |school|
+      school_list << school = {
+      :name => univerities.css(".rank-td title js-trigger h4 a").text,
+      :location => univerities.css(".rank-td title js-trigger h4 span").text,
+      :url => univerities.css(".rank-td title js-trigger h4 a").attribute("href").value,
+      :description => univerities.css(".rank-td stat .stats").text,
+      :rank => univerities.css(".rank-td rank js-trigger").text
+    }
     end
+    school_list
   end
 
 end

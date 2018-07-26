@@ -1,7 +1,6 @@
 class UniversityCliApp::CLI
 
   def call
-    list_colleges
     menu
     close_app
   end
@@ -36,20 +35,21 @@ class UniversityCliApp::CLI
   end
 
     def list_colleges
-      @universities = UniversityCliApp::Top50.top50
-      @universities.each_with_index do |university, index|
+      universities = UniversityCliApp::University.school_list
+      universities.each_with_index do |university, index|
         puts "#{index + 1}. university.name"
       end
     end
-    
+
     def list_by_rank
       puts "Please enter a number from 1-50:"
       answer = gets.strip
-      @universities = UniversityCliApp::Top50.top50
-      @universities.each_with_index do |university, index|
+      universities = UniversityCliApp::University.school_list
+      universities.each_with_index do |university, index|
         if index + 1 == answer
         puts "#{index + 1}. university.name"
-        puts
+        end
+      end
     end
 
     def close_app
