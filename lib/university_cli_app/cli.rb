@@ -16,31 +16,53 @@ class UniversityCliApp::CLI
       puts "3. Select University by rank"
       puts "4. Select university by location (state)"
       puts "5. Exit"
-    input = gets.strip
+    answer = gets.strip
     end
 
-    case answer
-    when "1"
+    if answer == "1"
       list_colleges
-    when "2"
+    elsif answer == "2"
       list_by_name
-    when "3"
+    elsif answer ==  "3"
       list_by_rank
-    when "4"
+    elsif answer == "4"
       list_location
+    else
+      "Please try again."
     end
   end
 
     def list_colleges
+      @universities = UniversityCliApp::Top50.top50
+      @universities.each_with_index do |university, index|
+        puts "#{index + 1}. university.name"
+      end
     end
 
     def list_by_name
+      puts "Please enter the name (ex: Princeton):"
+      # answer = gets.strip
+      # @universities = UniversityCliApp::Top50.top50
+      # if @universities.name.find?(answer)
+      #   puts university
+      end
     end
 
     def list_by_rank
+      puts "Please enter a number from 1-50:"
+      answer = gets.strip
+      @universities = UniversityCliApp::Top50.top50
+      @universities.each_with_index do |university, index|
+        if index + 1 == answer
+        puts "#{index + 1}. university.name"
     end
 
     def list_by_location
+      puts "Please enter the state (ex: NJ):"
+      answer = gets.strip
+      # @universities = UniversityCliApp::Top50.top50
+      # if @universities.location.find?(answer)
+      #   puts university
     end
 
     def close_app
