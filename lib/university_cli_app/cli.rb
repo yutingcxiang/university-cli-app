@@ -30,19 +30,19 @@ class UniversityCliApp::CLI
 
     def list_colleges
       UniversityCliApp::University.school_list
-      # universities = UniversityCliApp::University.school_list
-      # universities.each_with_index do |school, index|
-      #   puts "#{index + 1}. school.name"
-      # end
+      universities = UniversityCliApp::University.school_list
+      universities.each do |school|
+        puts "school.rank school.name"
+      end
     end
 
     def list_by_rank
       puts "Please enter a number from 1-50:"
       answer = gets.strip.to_i
       universities = UniversityCliApp::University.school_list
-      universities.each_with_index do |school, index|
+      universities.each do |school|
         if index + 1 == answer
-        puts "#{index + 1}. school.name"
+        puts "school.rank school.name"
         end
       end
     end

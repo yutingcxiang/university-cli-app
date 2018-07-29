@@ -1,28 +1,39 @@
+# require 'capybara/poltergeist'
+# require 'pry'
+
+options = {
+  js_errors: false,
+}
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+
+session = Capybara::Session.new(:poltergeist)
+
+doc = session.visit('https://www.thebestcolleges.org/rankings/top-50/')
+session.find('.js-rankings-expand-all').click
+#puts session.document.title
+
 class UniversityCliApp::University
   attr_accessor :name, :rank, :location, :url, :description
 
-  def self.school_list
-    doc = Nokogiri::HTML(open("https://www.thebestcolleges.org/rankings/top-50/"))
-    #scrape_school_list
-    binding.pry
+  def school_list
+    scrape_school_list
   end
 
   def self.scrape_school_list
-    doc = Nokogiri::HTML(open("https://www.thebestcolleges.org/rankings/top-50/"))
-    school_list = []
-    table = doc.css("table.rankings-list")
-    table.css('tr').each do |tr|
-      tr.css('td').each do |td|
-        school_list << school = {
-          :rank => td.css("rank-td rank js-trigger").text,
-          #:url => td.css("rank-td title js-trigger h4 a").attribute("href").value,
-          :location => td.css("rank-td title js-trigger h4 span").text,
-          :description1 => td.css("rank-td stat copy p").text
-        }
-      end
+    list = []
+    session.all('table.rankings-list tbody tr').each do |item|
+      list << {
+        :rank => item.find('td.rank').text,
+        :name => item.find('td.title span.label').text,
+        :url => item.find('td.stat.link a')['href'],
+        :location => item.find('td.title a.rank-title-link').text,
+        :description => item.first("td.stat.copy p").text
+      }
     end
-    binding.pry
-    school_list
+    #binding.pry
+    list
   end
-
 end

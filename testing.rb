@@ -33,7 +33,7 @@ class UniversityCliApp::University
         :description => item.first("td.stat.copy p").text
       }
     end
-    binding.pry
+    #binding.pry
     list
   end
 end
