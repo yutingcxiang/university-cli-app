@@ -13,16 +13,27 @@ session = Capybara::Session.new(:poltergeist)
 
 doc = session.visit('https://www.thebestcolleges.org/rankings/top-50/')
 session.find('.js-rankings-expand-all').click
-puts session.document.title
+#puts session.document.title
 
-test_array = []
-test_array2 = []
+class UniversityCliApp::University
+  attr_accessor :name, :rank, :location, :url, :description
 
-session.all('table.rankings-list tbody tr').each do |item|
-  #item.find('td.rank-td.title.js-trigger').click
-  test_array << item.find('td.rank').text
-  test_array2 << item.first("td.stat.copy p").text
+  def school_list
+    scrape_school_list
+  end
+
+  def self.scrape_school_list
+    list = []
+    session.all('table.rankings-list tbody tr').each do |item|
+      list << {
+        :rank => item.find('td.rank').text,
+        :name => item.find('td.title span.label').text,
+        :url => item.find('td.stat.link a')['href'],
+        :location => item.find('td.title a.rank-title-link').text,
+        :description => item.first("td.stat.copy p").text
+      }
+    end
+    binding.pry
+    list
+  end
 end
-
-binding.pry
-#td.rank-td.title.js-trigger::after
