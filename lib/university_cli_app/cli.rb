@@ -43,6 +43,7 @@ class UniversityCliApp::CLI
 
     def list_colleges
       UniversityCliApp::University.school_list
+      puts "Top 50 Colleges & Universities in America for 2018"
       list = UniversityCliApp::University.school_list
       list.each do |school|
         puts "#{school[:rank]}. #{school[:name]}"

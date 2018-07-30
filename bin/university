@@ -5,3 +5,4 @@ require "university_cli_app"
 require "pry"
 
 UniversityCliApp::CLI.new.call
+list = UniversityCliApp::University.school_list
