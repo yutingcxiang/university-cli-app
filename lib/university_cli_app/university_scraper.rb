@@ -1,7 +1,7 @@
 # require 'capybara/poltergeist'
 # require 'pry'
 
-class UniversityCliApp::University
+class University_scraper
   attr_accessor :name, :rank, :location, :url, :description
 
   def self.school_list

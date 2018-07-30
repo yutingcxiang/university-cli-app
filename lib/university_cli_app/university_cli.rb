@@ -1,4 +1,4 @@
-class UniversityCliApp::CLI
+class University_cli
 
   def call
     menu
@@ -8,10 +8,12 @@ class UniversityCliApp::CLI
     input = nil
     unless input == "3"
       puts "Welcome to the top 50 Colleges & Universities in America for 2018."
+      puts ""
       puts "Please select an option and press enter:"
       puts "1. View entire college list"
       puts "2. Select University by rank"
       puts "3. Exit"
+      puts ""
     answer = gets.strip
 
     if answer == "1"
@@ -42,9 +44,8 @@ class UniversityCliApp::CLI
   end
 
     def list_colleges
-      UniversityCliApp::University.school_list
       puts "Top 50 Colleges & Universities in America for 2018"
-      list = UniversityCliApp::University.school_list
+      list = University_scraper.school_list
       list.each do |school|
         puts "#{school[:rank]}. #{school[:name]}"
       end
@@ -60,13 +61,14 @@ class UniversityCliApp::CLI
         answer = gets.strip
       end
 
-      list = UniversityCliApp::University.school_list
+      list = University_scraper.school_list
       list.each do |school|
         if answer == school[:rank]
           puts "#{school[:rank]}. #{school[:name]}"
-          puts "#{school[:location]}"
+          puts "#{school[:location].capitalize}"
           puts "#{school[:description]}"
           puts "Learn more at: #{school[:url]}."
+          puts ""
         end
       end
     end

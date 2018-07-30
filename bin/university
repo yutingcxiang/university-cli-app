@@ -3,6 +3,6 @@
 require "bundler/setup"
 require "university_cli_app"
 require "pry"
+require "capybara/poltergeist"
 
-UniversityCliApp::CLI.new.call
-list = UniversityCliApp::University.school_list
+University_cli.new.call
