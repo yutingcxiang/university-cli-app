@@ -24,6 +24,20 @@ class UniversityCliApp::CLI
       puts "Please try again."
       menu
     end
+
+    puts "Please choose another option and press enter:"
+    puts "1. Back to menu"
+    puts "2. Exit"
+    input = gets.strip
+
+    if input == "1"
+      menu
+    elsif input == "2"
+      close_app
+    else
+      puts "Please try again."
+      menu
+    end
     end
   end
 
@@ -49,6 +63,7 @@ class UniversityCliApp::CLI
       list.each do |school|
         if answer == school[:rank]
           puts "#{school[:rank]}. #{school[:name]}"
+          puts "#{school[:location]}"
           puts "#{school[:description]}"
           puts "Learn more at: #{school[:url]}."
         end
