@@ -27,9 +27,9 @@ class UniversityCliApp::University
     session.all('table.rankings-list tbody tr').each do |item|
       list << {
         :rank => item.find('td.rank').text,
-        :name => item.find('td.title span.label').text,
+        :name => item.find('td.title a.rank-title-link').text,
+        :location => item.find('td.title span.label').text,
         :url => item.find('td.stat.link a')['href'],
-        :location => item.find('td.title a.rank-title-link').text,
         :description => item.first("td.stat.copy p").text
       }
     end

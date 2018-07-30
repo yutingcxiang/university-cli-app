@@ -36,12 +36,21 @@ class UniversityCliApp::CLI
     end
 
     def list_by_rank
-      puts "Please enter a number from 1-50:"
+      puts "Please enter a number from 1-50 and press enter:"
       answer = gets.strip
+      num = answer.to_i
+
+      unless num >= 1 && num <= 50
+        puts "Invalid. Please try again."
+        answer = gets.strip
+      end
+
       list = UniversityCliApp::University.school_list
       list.each do |school|
-        if answer == school.rank
+        if answer == school[:rank]
           puts "#{school[:rank]}. #{school[:name]}"
+          puts "#{school[:description]}"
+          puts "Learn more at: #{school[:url]}."
         end
       end
     end
