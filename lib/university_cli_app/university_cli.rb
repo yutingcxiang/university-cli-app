@@ -49,6 +49,7 @@ class University_cli
       list.each do |school|
         puts "#{school[:rank]}. #{school[:name]}"
       end
+      puts ""
     end
 
     def list_by_rank

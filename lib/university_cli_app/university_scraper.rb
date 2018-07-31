@@ -9,12 +9,13 @@ class University_scraper
   end
 
   def self.scrape_school_list
-    options = {
-      js_errors: false,
-    }
+    # options = {
+    #   js_errors: false,
+    # }
 
     Capybara.register_driver :poltergeist do |app|
-      Capybara::Poltergeist::Driver.new(app, options)
+      Capybara::Poltergeist::Driver.new(app,
+        js_errors: false, phantomjs_logger: StringIO.new)
     end
 
     session = Capybara::Session.new(:poltergeist)
