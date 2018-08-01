@@ -5,7 +5,7 @@ require "university_cli_app/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "university_cli_app"
-  spec.version       = UniversityCliApp::0.1.0
+  spec.version       = UniversityCliApp::VERSION
   spec.authors       = ["Christine Xiang"]
   spec.email         = ["yutingcxiang@gmail.com"]
 
