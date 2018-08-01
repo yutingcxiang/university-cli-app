@@ -6,7 +6,7 @@ require "university_cli_app/version"
 Gem::Specification.new do |spec|
   spec.name          = "university_cli_app"
   spec.version       = UniversityCliApp::0.1.0
-  spec.authors       = ["Christine"]
+  spec.authors       = ["Christine Xiang"]
   spec.email         = ["yutingcxiang@gmail.com"]
 
   spec.summary       = "This app displays the top 50 colleges and universities in America for 2018."
