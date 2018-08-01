@@ -5,6 +5,6 @@ require "university_cli_app"
 require "pry"
 require "capybara/poltergeist"
 
-require_relative '../lib/university_cli_app/university_cli'
+require_relative '../lib/university_cli_app'
 
 University_cli.new.call
