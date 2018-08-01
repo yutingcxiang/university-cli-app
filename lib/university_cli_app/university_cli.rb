@@ -67,7 +67,9 @@ class University_cli
         if answer == school[:rank]
           puts "#{school[:rank]}. #{school[:name]}"
           puts "#{school[:location].capitalize}"
+          puts ""
           puts "#{school[:description]}"
+          puts ""
           puts "Learn more at: #{school[:url]}."
           puts ""
         end
