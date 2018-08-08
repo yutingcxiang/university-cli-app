@@ -2,20 +2,20 @@ class UniversityCliApp::University
   attr_accessor :name, :rank, :location, :url, :description
   @@all = []
 
-  # def initialize(name=nil, rank=nil, location=nil, url=nil, description=nil)
-  #   @name = name
-  #   @rank = rank
-  #   @location = location
-  #   @url = url
-  #   @description = description
-  # end
-
   def self.all
     @@all
   end
 
-  def build_list
-    UniversityCliApp::University_scraper.scrape_school_list
+  def initialize(name, rank, location, url, description)
+    @name = name
+    @rank = rank
+    @location = location
+    @url = url
+    @description = description
+    save
   end
 
+  def save
+    @@all << self
+  end
 end

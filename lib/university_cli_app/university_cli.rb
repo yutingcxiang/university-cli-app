@@ -1,15 +1,18 @@
 class UniversityCliApp::UniversityCLI
+attr_accessor :list
 
   def call
+    puts "LOADING..."
+    puts ""
+    UniversityCliApp::University_scraper.school_list
     menu
-    UniversityCliApp::University.new.build_list
   end
 
   def menu
+    puts "Welcome to the top 50 Colleges & Universities in America for 2018."
+    puts ""
     input = nil
     unless input == "3"
-      puts "Welcome to the top 50 Colleges & Universities in America for 2018."
-      puts ""
       puts "Please select an option and press enter:"
       puts "1. View entire college list"
       puts "2. Select University by rank"
@@ -47,8 +50,8 @@ class UniversityCliApp::UniversityCLI
     def list_colleges
       puts "Top 50 Colleges & Universities in America for 2018"
       list = UniversityCliApp::University.all
-      list.each do |school|
-        puts "#{school[:rank]}. #{school[:name]}"
+      list.each_with_index do |school, i|
+        puts "#{list[i].rank}. #{list[i].name}"
       end
       puts ""
     end
@@ -61,20 +64,15 @@ class UniversityCliApp::UniversityCLI
       unless num >= 1 && num <= 50
         puts "Invalid. Please try again."
         answer = gets.strip
+        num = answer.to_i
       end
 
       list = UniversityCliApp::University.all
-      list.each do |school|
-        if answer == school[:rank]
-          puts "#{school[:rank]}. #{school[:name]}"
-          puts "#{school[:location].capitalize}"
-          puts ""
-          puts "#{school[:description]}"
-          puts ""
-          puts "Learn more at: #{school[:url]}."
-          puts ""
-        end
-      end
+      puts "#{list[num].rank}. #{list[num].name}"
+      puts "#{list[num].location}"
+      puts "#{list[num].description}"
+      puts "Learn more at: #{list[num].url}."
+      puts ""
     end
 
     def close_app

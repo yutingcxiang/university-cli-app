@@ -2,11 +2,10 @@
 # require 'pry'
 
 class UniversityCliApp::University_scraper
-  attr_accessor :name, :rank, :location, :url, :description
 
-  # def self.school_list
-  #   scrape_school_list
-  # end
+  def self.school_list
+    scrape_school_list
+  end
 
   def self.scrape_school_list
     # options = {
@@ -23,16 +22,14 @@ class UniversityCliApp::University_scraper
     session.find('.js-rankings-expand-all').click
     #puts session.document.title
 
-    list = UniversityCliApp::University.all
     session.all('table.rankings-list tbody tr').each do |item|
-      list << {
-        :rank => item.find('td.rank').text,
-        :name => item.find('td.title a.rank-title-link').text,
-        :location => item.find('td.title span.label').text,
-        :url => item.find('td.stat.link a')['href'],
-        :description => item.first("td.stat.copy p").text
-      }
+      rank = item.find('td.rank').text,
+      name = item.find('td.title a.rank-title-link').text,
+      location = item.find('td.title span.label').text,
+      url = item.find('td.stat.link a')['href'],
+      description = item.first("td.stat.copy p").text
+
+      school = UniversityCliApp::University.new(name, rank[0], location, url, description)
     end
-    list
   end
 end
