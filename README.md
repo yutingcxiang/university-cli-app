@@ -22,7 +22,7 @@ Or install it yourself as:
 
 Type the below and follow the on screen prompts.
 
-    $ University_cli.new.call
+    $ bin/university
 
 ## Development
 
