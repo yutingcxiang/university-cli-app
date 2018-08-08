@@ -1,7 +1,8 @@
-class University_cli
+class UniversityCliApp::UniversityCLI
 
   def call
     menu
+    UniversityCliApp::University.new.build_list
   end
 
   def menu
@@ -45,7 +46,7 @@ class University_cli
 
     def list_colleges
       puts "Top 50 Colleges & Universities in America for 2018"
-      list = University_scraper.school_list
+      list = UniversityCliApp::University.all
       list.each do |school|
         puts "#{school[:rank]}. #{school[:name]}"
       end
@@ -62,7 +63,7 @@ class University_cli
         answer = gets.strip
       end
 
-      list = University_scraper.school_list
+      list = UniversityCliApp::University.all
       list.each do |school|
         if answer == school[:rank]
           puts "#{school[:rank]}. #{school[:name]}"

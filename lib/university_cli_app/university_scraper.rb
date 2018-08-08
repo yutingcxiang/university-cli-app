@@ -1,18 +1,17 @@
 # require 'capybara/poltergeist'
 # require 'pry'
 
-class University_scraper
+class UniversityCliApp::University_scraper
   attr_accessor :name, :rank, :location, :url, :description
 
-  def self.school_list
-    scrape_school_list
-  end
+  # def self.school_list
+  #   scrape_school_list
+  # end
 
   def self.scrape_school_list
     # options = {
     #   js_errors: false,
     # }
-
     Capybara.register_driver :poltergeist do |app|
       Capybara::Poltergeist::Driver.new(app,
         js_errors: false, phantomjs_logger: StringIO.new)
@@ -24,7 +23,7 @@ class University_scraper
     session.find('.js-rankings-expand-all').click
     #puts session.document.title
 
-    list = []
+    list = UniversityCliApp::University.all
     session.all('table.rankings-list tbody tr').each do |item|
       list << {
         :rank => item.find('td.rank').text,
@@ -34,7 +33,6 @@ class University_scraper
         :description => item.first("td.stat.copy p").text
       }
     end
-    #binding.pry
     list
   end
 end

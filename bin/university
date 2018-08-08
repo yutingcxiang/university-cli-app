@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "university_cli_app"
+# require "bundler/setup"
+# require "university_cli_app"
 
 require_relative '../lib/university_cli_app'
 
-University_cli.new.call
+UniversityCliApp::UniversityCLI.new.call
