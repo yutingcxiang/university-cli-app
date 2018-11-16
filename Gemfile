@@ -7,3 +7,4 @@ gemspec
 
 gem 'phantomjs', :require => 'phantomjs/poltergeist'
 gem 'capybara'
+gem "rack", ">= 2.0.6"
